@@ -5,7 +5,7 @@ Description
 -----------
 
 If you developp in C/C++ with Vim you probably know the great plugin
-[YouCompleteMe](https://github.com/Valloric/YouCompleteMe).
+[YouCompleteMe][].
 
 In order to get it work you have to write a `.ycm_extra_conf.py` python script
 and put it in your project directory. This script should provide needed
@@ -13,9 +13,12 @@ informations to compile your project. It is very tedious to copy it
 each time you create a new project, because you just have to modify
 a few part of it.
 
-The solution proposed here is to keep a single python script
+The solution proposed here is to keep a single
+[python script](python/ycm_simple_conf.py)
 and at each project creation write a `.ycm_simple_conf.xml` file that
-contain only project-specific informations:
+contain only project-specific informations.
+
+You can see an example just below:
 
 ```xml
 <project type="c++">
@@ -29,13 +32,12 @@ contain only project-specific informations:
 Installation
 ------------
 
-Use the great plugin [NeoBundle](https://github.com/Shougo/neobundle.vim)
+Use the great plugin [NeoBundle][]
 and just add this line in the appropriate section of your `.vimrc` file:
 
     NeoBundle "tdcdev/ycm_simple_conf"
 
-That's it ! Now if you want disable `ycm_simple_conf` add this line in
-your `.vimrc` file:
+Now if you want disable `ycm_simple_conf` add this line in your `.vimrc` file:
 
     let g:ycm_simple_conf_active = 0
 
@@ -43,10 +45,19 @@ Usage
 -----
 
 As you can see above, it is very easy to write the `.ycm_simple_conf.xml` file.
-Project type can be **c** or **c++**, and include path can be absolute or
+Project type can be **c** or **c++** and include paths can be absolute or
 relative to the `.ycm_simple_conf.xml` file.
 
-It is not necessary to add default compiler include paths, `ycm_simple_conf.py`
+It is not necessary to add default compiler include paths, like
+**/usr/include** or **/usr/local/include**, `ycm_simple_conf.py`
 ask compiler for them.
 
-You can see witch flags are set with logfiles in `/tmp/ycm/` on Linux.
+Finally, you can see witch flags are set with [YouCompleteMe][] logfiles.
+
+License
+-------
+
+This software is licensed under the [zlib license](LICENSE.txt).
+
+[YouCompleteMe]: https://github.com/Valloric/YouCompleteMe
+[NeoBundle]: https://github.com/Shougo/neobundle.vim
