@@ -4,11 +4,11 @@ YouCompleteMe Simple Configuration
 Description
 -----------
 
-If you developp in C/C++ with Vim you probably know the great plugin
+If you develop in C/C++ with Vim you probably know the great plugin
 [YouCompleteMe][].
 
-In order to get it work you have to write a `.ycm_extra_conf.py` python script
-and put it in your project directory. This script should provide needed
+In order to use it, you have to write a `.ycm_extra_conf.py` python script
+and copy it in your project directory. This script should provide needed
 informations to compile your project. It is very tedious to copy it
 each time you create a new project, because you just have to modify
 a few part of it.
@@ -37,7 +37,7 @@ and just add this line in the appropriate section of your `.vimrc` file:
 
     NeoBundle "tdcdev/ycm_simple_conf"
 
-Now if you want disable `ycm_simple_conf` add this line in your `.vimrc` file:
+If you want disable `ycm_simple_conf` add this line in your `.vimrc` file:
 
     let g:ycm_simple_conf_active = 0
 

@@ -4,20 +4,20 @@
                       YouCompleteMe Simple Configuration~
 ==============================================================================
 
- 1. Description ................................ |ycm_simple_conf-description|
- 2. Installation .............................. |ycm_simple_conf-installation|
- 3. Usage ............................................ |ycm_simple_conf-usage|
- 4. License ........................................ |ycm_simple_conf-license|
+ 1. Description ................................ |ycm-simple-conf-description|
+ 2. Installation .............................. |ycm-simple-conf-installation|
+ 3. Usage ............................................ |ycm-simple-conf-usage|
+ 4. License ........................................ |ycm-simple-conf-license|
 
 ==============================================================================
-                                                 *ycm_simple_conf-description*
+                                                 *ycm-simple-conf-description*
  1. Description~
 
-If you developp in C/C++ with Vim you probably know the great plugin
+If you develop in C/C++ with Vim you probably know the great plugin
 [YouCompleteMe][].
 
-In order to get it work you have to write a `.ycm_extra_conf.py` python script
-and put it in your project directory. This script should provide needed
+In order to use it, you have to write a `.ycm_extra_conf.py` python script
+and copy it in your project directory. This script should provide needed
 informations to compile your project. It is very tedious to copy it
 each time you create a new project, because you just have to modify
 a few part of it.
@@ -39,7 +39,7 @@ You can see an example just below:
 ```
 
 ==============================================================================
-                                                *ycm_simple_conf-installation*
+                                                *ycm-simple-conf-installation*
  2. Installation~
 
 Use the great plugin [NeoBundle][]
@@ -47,12 +47,12 @@ and just add this line in the appropriate section of your `.vimrc` file:
 
     NeoBundle "tdcdev/ycm_simple_conf"
 
-Now if you want disable `ycm_simple_conf` add this line in your `.vimrc` file:
+If you want disable `ycm_simple_conf` add this line in your `.vimrc` file:
 
     let g:ycm_simple_conf_active = 0
 
 ==============================================================================
-                                                       *ycm_simple_conf-usage*
+                                                       *ycm-simple-conf-usage*
  3. Usage~
 
 As you can see above, it is very easy to write the `.ycm_simple_conf.xml` file.
@@ -66,7 +66,7 @@ ask compiler for them.
 Finally, you can see witch flags are set with [YouCompleteMe][] logfiles.
 
 ==============================================================================
-                                                     *ycm_simple_conf-license*
+                                                     *ycm-simple-conf-license*
  4. License~
 
 This software is licensed under the [zlib license](LICENSE.txt).
