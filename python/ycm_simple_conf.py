@@ -22,7 +22,6 @@
 
 
 import os
-import sys
 import logging
 import xml.etree.ElementTree as et
 import re
@@ -101,25 +100,24 @@ class SimpleConf(object):
             if project.tag != 'project':
                 raise Exception
             self.m_project_type = project.attrib['type']
-            if not self.m_project_type in ['c', 'c++']:
+            if self.m_project_type not in ['c', 'c++']:
                 raise Exception
             for include in project.iter('include'):
                 inc = os.path.join(self.m_root_dir, include.attrib['path'])
                 inc = str.strip(inc)
                 self.m_user_include_path.append(inc)
                 logging.info('Adding to user include path: %s' % inc)
-        except Exception as e:
+        except Exception:
             logging.error('Failed to parse config file')
 
     def fetch_default_include_path(self):
         try:
             devnull = open('/dev/null', 'r')
             err = subprocess.check_output(
-                    ['cpp', '-x', self.m_project_type, '-v'],
-                    stdin = devnull,
-                    stderr = subprocess.STDOUT
-                 )
-            include = []
+                ['cpp', '-x', self.m_project_type, '-v'],
+                stdin=devnull,
+                stderr=subprocess.STDOUT
+            )
             pattern = re.compile(
                 '#include \<\.{3}\>.*\:(.+)End of search list\.',
                 re.DOTALL
@@ -130,7 +128,7 @@ class SimpleConf(object):
                 for inc in [str.strip(l) for l in lines if l]:
                     logging.info('Adding to default include path: %s' % inc)
                     self.m_default_include_path.append(inc)
-        except Exception as e:
+        except Exception:
             logging.error('Failed to run: cpp -x %s -v' % self.m_project_type)
 
 
@@ -139,6 +137,6 @@ def FlagsForFile(file_name, **kwargs):
     flags = simple_conf.flags
     logging.info('Flags used by clang: %s' % flags)
     return {
-            'flags': flags,
-            'do_cache': True
-            }
+        'flags': flags,
+        'do_cache': True
+    }
