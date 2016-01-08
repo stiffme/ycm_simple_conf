@@ -26,6 +26,8 @@ You can see an example just below:
     <include path="/home/local/libB/include"/>
     <include path="include"/>
     <include path="build"/>
+    <define name="PREPROCESSOR_DIRECTIVE_EXEMPLE_1"/>
+    <define name="PREPROCESSOR_DIRECTIVE_EXEMPLE_2"/>
 </project>
 ```
 

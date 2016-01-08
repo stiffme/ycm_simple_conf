@@ -35,6 +35,7 @@ class SimpleConf(object):
         self.m_root_dir = None
         self.m_config_file = None
         self.m_project_type = 'c++'
+        self.m_user_defines = list()
         self.m_user_include_path = list()
         self.m_default_include_path = list()
         self.seek_config_file(os.path.dirname(self.m_compiled_file))
@@ -58,6 +59,10 @@ class SimpleConf(object):
         return self.m_project_type
 
     @property
+    def user_defines(self):
+        return self.m_user_defines
+
+    @property
     def user_include_path(self):
         return self.m_user_include_path
 
@@ -74,6 +79,8 @@ class SimpleConf(object):
             flags.extend(['-std=c++11', '-x', 'c++'])
         for include in self.m_default_include_path:
             flags.extend(['-isystem', include])
+        for define in self.m_user_defines:
+            flags.extend(['-D', define])
         for include in self.m_user_include_path:
             flags.extend(['-I', include])
         return flags
@@ -102,13 +109,17 @@ class SimpleConf(object):
             self.m_project_type = project.attrib['type']
             if self.m_project_type not in ['c', 'c++']:
                 raise Exception
+            for define in project.iter('define'):
+                name = str.strip(define.attrib['name'])
+                self.m_user_defines.append(name)
+                logging.info('Adding to user defines: %s' % name)
             for include in project.iter('include'):
                 inc = os.path.join(self.m_root_dir, include.attrib['path'])
                 inc = str.strip(inc)
                 self.m_user_include_path.append(inc)
                 logging.info('Adding to user include path: %s' % inc)
-        except Exception:
-            logging.error('Failed to parse config file')
+        except Exception as e:
+            logging.error('Failed to parse config file: %s' % e.message)
 
     def fetch_default_include_path(self):
         try:
