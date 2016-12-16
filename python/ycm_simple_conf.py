@@ -123,14 +123,15 @@ class SimpleConf(object):
 
     def fetch_default_include_path(self):
         try:
-            devnull = open('/dev/null', 'r')
+            devnull = open(os.devnull, 'r')
             err = subprocess.check_output(
-                ['cpp', '-x', self.m_project_type, '-v'],
+                ['clang', '-x', self.m_project_type, '-v' , '-'],
                 stdin=devnull,
                 stderr=subprocess.STDOUT
             )
+            err = err.decode("utf-8")
             pattern = re.compile(
-                '#include \<\.{3}\>.*\:(.+)End of search list\.',
+                '#include \<\.{3}\>.*starts here\:(.+)End of search list\.',
                 re.DOTALL
                 )
             match = pattern.search(err)
