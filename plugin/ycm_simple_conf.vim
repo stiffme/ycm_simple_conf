@@ -24,24 +24,7 @@ function! s:set_ycm_simple_conf_abs_script()
     if ! has("python") && ! has("python3")
         return
     endif
-    if has('python')
-        let l:pyton_exec='python << EOF'
-    else 
-        let l:python_exec='python3 << EOF'
-    endif
-    exec l:python_exec
-import vim
-import os
-try:
-    ret = ''
-    main_dir = vim.eval('s:ycm_simple_conf_dir')
-    script_dir = vim.eval('s:ycm_simple_conf_script_dir')
-    script = vim.eval('s:ycm_simple_conf_script')
-    ret = os.path.join(main_dir, os.path.join(script_dir, script))
-except Exception as e:
-    pass
-vim.command('let s:ycm_simple_conf_abs_script = \"' + ret + '\"')
-EOF
+    let s:ycm_simple_conf_abs_script=expand(s:ycm_simple_conf_dir . '/' . s:ycm_simple_conf_script_dir . '/' . s:ycm_simple_conf_script)
 endfunction
 
 let g:ycm_simple_conf_active =
