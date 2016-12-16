@@ -24,7 +24,12 @@ function! s:set_ycm_simple_conf_abs_script()
     if ! has("python") && ! has("python3")
         return
     endif
-    python << EOF
+    if has('python')
+        let l:pyton_exec='python << EOF'
+    else 
+        let l:python_exec='python3 << EOF'
+    endif
+    exec l:python_exec
 import vim
 import os
 try:
